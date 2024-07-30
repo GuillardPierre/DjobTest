@@ -1,10 +1,10 @@
 @endpoint=http://localhost:3000
 
-
+########################## GET ALL CUSTOMER
 GET {{endpoint}}/customer
 
 ###
-
+########################## GET ONE CUSTOMER
 GET {{endpoint}}/customer/1
 
 ###
@@ -34,3 +34,63 @@ Content-Type: application/json
 ###
 ########################## DELETE CUSTOMER
 DELETE {{endpoint}}/customer/602
+
+
+########################## GET ALL FILM
+GET {{endpoint}}/film
+
+###
+########################## GET ONE FILM
+GET {{endpoint}}/film/1
+
+###
+########################## CREATE FILM
+POST {{endpoint}}/film
+Content-Type: application/json
+
+{
+  "film_id": 1,
+  "title": "ACADEMY TEST",
+  "description": "An hepic story about a man who want to become a good developper",
+  "release_year": 2024,
+  "language_id": 1,
+  "original_language_id": null,
+  "rental_duration": 6,
+  "rental_rate": "0.99",
+  "length": 86,
+  "replacement_cost": "20.99",
+  "rating": "PG",
+  "last_update": "2006-02-15T05:03:42.000Z",
+  "special_features": [
+    "Deleted Scenes",
+    "Behind the Scenes"
+  ]
+}
+
+###
+########################## UPDATE CUSTOMER
+PATCH {{endpoint}}/film/1
+Content-Type: application/json
+
+{
+  "film_id": 1,
+  "title": "ACADEMY TEST",
+  "description": "An hepic story about a man who want to become a good developper",
+  "language_id": 1,
+  "original_language_id": null,
+  "rental_duration": 6,
+  "rental_rate": "0.99",
+  "length": 86,
+  "replacement_cost": "20.99",
+  "rating": "PG",
+  "last_update": "2006-02-15T05:03:42.000Z",
+  "special_features": [
+    "Deleted Scenes",
+    "Behind the Scenes"
+  ]
+}
+
+###
+########################## DELETE CUSTOMER
+DELETE {{endpoint}}/film/602
+

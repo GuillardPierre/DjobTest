@@ -26,7 +26,7 @@ export class CustomerService {
     });
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.customer.findMany();
   }
 
@@ -57,7 +57,7 @@ export class CustomerService {
     });
   }
 
-  remove(customer_id: number) {
+  async remove(customer_id: number) {
     return this.prisma.customer.delete({ where: { customer_id } });
   }
 }
