@@ -8,8 +8,6 @@ export class CustomerService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateCustomerDto) {
-    console.log('je suis ici');
-
     // ! Pour l'instant on peut créer un utilisateur avec un id d'adresse. Il faudrait gérer l'adresse avec une autre ressource.
     return this.prisma.customer.create({
       data: {
@@ -21,7 +19,6 @@ export class CustomerService {
         activebool: data.activebool,
         active: data.active,
         create_date: new Date(), // Valeur par défaut, si nécessaire
-        last_update: new Date(), // Valeur par défaut, si nécessaire
       },
     });
   }
