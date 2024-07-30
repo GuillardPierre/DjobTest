@@ -1,0 +1,36 @@
+@endpoint=http://localhost:3000
+
+
+GET {{endpoint}}/customer
+
+###
+
+GET {{endpoint}}/customer/1
+
+###
+########################## CREATE CUSTOMER
+POST {{endpoint}}/customer
+Content-Type: application/json
+
+{
+  "store_id": 1,
+  "first_name": "Batman",
+  "last_name": "PasWayne",
+  "email": "batmail@mail.fr",
+  "address_id": 1,
+  "activebool": true,
+  "active": 1
+}
+
+###
+########################## UPDATE CUSTOMER
+PATCH {{endpoint}}/customer/601
+Content-Type: application/json
+
+{
+  "last_name": "PasDuTouTWayne"
+}
+
+###
+########################## DELETE CUSTOMER
+DELETE {{endpoint}}/customer/602
