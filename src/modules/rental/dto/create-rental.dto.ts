@@ -2,7 +2,7 @@ import { IsInt, IsOptional, IsDate, IsString } from 'class-validator';
 
 export class CreateRentalDto {
   @IsDate()
-  rental_date: Date;
+  rental_date: string;
 
   @IsInt()
   inventory_id: number;
@@ -12,7 +12,7 @@ export class CreateRentalDto {
 
   @IsOptional()
   @IsDate()
-  return_date?: Date;
+  return_date: string;
 
   @IsInt()
   staff_id: number;

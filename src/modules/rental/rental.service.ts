@@ -68,10 +68,10 @@ export class RentalService {
     // Créer l'entrée dans rental
     return await this.prisma.rental.create({
       data: {
-        rental_date: rentalDateTime,
+        rental_date: rentalDateTime.toISO(),
         inventory: { connect: { inventory_id: inventory.inventory_id } }, // Connexion avec un enregistrement existant dans la table `inventory`
         customer: { connect: { customer_id: createRentalDto.customer_id } }, // Connexion avec un enregistrement existant dans la table `customer`
-        return_date: returnDateTime,
+        return_date: returnDateTime.toISO(),
         staff: { connect: { staff_id: createRentalDto.staff_id } }, // Connexion avec un enregistrement existant dans la table `staff`
       },
     });
@@ -101,5 +101,19 @@ export class RentalService {
 
   async remove(rental_id: number) {
     return await this.prisma.rental.delete({ where: { rental_id } });
+  }
+
+  async findRentalsNearReturnDate(
+    fiveDaysFromNow: DateTime,
+    threeDaysFromNow: DateTime,
+  ) {
+    return this.prisma.rental.findMany({
+      where: {
+        return_date: {
+          gte: fiveDaysFromNow.toJSDate(),
+          lte: threeDaysFromNow.toJSDate(),
+        },
+      },
+    });
   }
 }

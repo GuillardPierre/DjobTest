@@ -99,7 +99,7 @@ GET {{endpoint}}/rental
 
 ###
 ########################## GET ONE RENTAL
-GET {{endpoint}}/rental/1
+GET {{endpoint}}/rental/2
 
 ###
 ########################## CREATE RENTAL
