@@ -22,6 +22,45 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+# Challenge DJOB
+
+Bonjour !
+Ceci est mon premier projet utilisant Nest.
+J'espère ne pas m'être trop mal débrouillé !
+
+- [x] Un client (Customer) a la possibilité d'effectuer des locations (Rental) de films.
+
+  ```js
+  POST {{endpoint}}/rental
+  Content-Type: application/json
+  {
+  "title": "ACADEMY TEST",
+  "rental_id": 1,
+  "rental_date": "2005-05-24T22:53:30.000Z",
+  "inventory_id": 365,
+  "customer_id": 131,
+  "return_date": "2006-05-26T22:04:30.000Z",
+  "staff_id": 1
+  }
+  ```
+
+- [x] Chaque location est représentée par une date de début et une date de retour, qui peuvent être choisies par le client.
+- [x] La durée d'une location est d'au minimum 1 semaine et ne doit pas excéder 3 semaines.
+
+  ```md
+  Une validation a été rajouté dans le fichier rental.service.ts
+  Une migration a été mise en place afin d'ajouter une vérification pour toutes les nouvelles locations
+  ```
+
+- [x] Les dates de début et de retour des locations sont définies en fonction du fuseau horaire (timezone) du client (les tables doivent être modifiées en conséquence).
+
+```md
+Lors de la création d'un nouveau customer il doit choisir un fuseau horaire qui sera enregistré dans une nouvelle colonne de la table customer (par défaut ce sera Paris).
+Cette valeur sera utilisé pour créer les réservations et enregistré dans la bdd
+```
+
+- [ ] Une location en cours n'est pas modifiable.
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
@@ -43,19 +82,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support

@@ -110,9 +110,9 @@ Content-Type: application/json
   "title": "ACADEMY TEST",
   "rental_id": 1,
   "rental_date": "2005-05-24T22:53:30.000Z",
-  "inventory_id": 365,
-  "customer_id": 131,
-  "return_date": "2006-05-26T22:04:30.000Z",
+  "inventory_id": 366,
+  "customer_id": 132,
+  "return_date": "2005-06-10T22:04:30.000Z",
   "staff_id": 1
 }
 

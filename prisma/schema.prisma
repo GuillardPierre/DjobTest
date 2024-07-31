@@ -70,6 +70,7 @@ model customer {
   create_date      DateTime           @default(dbgenerated("('now'::text)::date")) @db.Date
   last_update      DateTime?          @default(now()) @db.Timestamp(6)
   active           Int?
+  timezone         String?            @default("Europe/Paris") @db.VarChar(255)
   address          address            @relation(fields: [address_id], references: [address_id])
   store            store              @relation(fields: [store_id], references: [store_id])
   payment          payment[]
@@ -114,7 +115,7 @@ model film {
 }
 
 model film_actor {
-  actor_id    Int 
+  actor_id    Int
   film_id     Int
   last_update DateTime @default(now()) @db.Timestamp(6)
   actor       actor    @relation(fields: [actor_id], references: [actor_id])

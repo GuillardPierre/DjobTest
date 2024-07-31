@@ -1,5 +1,6 @@
 export class CreateCustomerDto {
   // On crée un validateur (dto = data transfer schemas) qui va définir la forme attendu par le serveur pour créer un customer
+  timezone: String;
   store_id: number;
   first_name: string;
   last_name: string;
