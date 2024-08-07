@@ -24,7 +24,8 @@ Content-Type: application/json
 
 ###
 ########################## UPDATE CUSTOMER
-PATCH {{endpoint}}/customer/601
+# MODIFIER L'ID USER EN FONCTION DE LA CREATION PRECEDENTE
+PATCH {{endpoint}}/customer/600
 Content-Type: application/json
 
 {
@@ -33,7 +34,7 @@ Content-Type: application/json
 
 ###
 ########################## DELETE CUSTOMER
-DELETE {{endpoint}}/customer/602
+DELETE {{endpoint}}/customer/600
 
 
 ########################## GET ALL FILM
@@ -68,7 +69,7 @@ Content-Type: application/json
 }
 
 ###
-########################## UPDATE CUSTOMER
+########################## UPDATE FILM
 PATCH {{endpoint}}/film/1
 Content-Type: application/json
 
@@ -91,7 +92,7 @@ Content-Type: application/json
 }
 
 ###
-########################## DELETE CUSTOMER
+########################## DELETE FILM
 DELETE {{endpoint}}/film/602
 
 ########################## GET ALL RENTAL (ne pas lancer ça fait buguer) 
@@ -103,15 +104,16 @@ GET {{endpoint}}/rental/2
 
 ###
 ########################## CREATE RENTAL
+# CHANGER UTILISATEUR SI ERREUR UNIQUE CONSTRAINT
 POST {{endpoint}}/rental
 Content-Type: application/json
 
 {
-  "title": "ACADEMY TEST",
+  "title": "ACADEMY DINOSAUR",
   "rental_id": 1,
   "rental_date": "2005-05-24T22:53:30.000Z",
   "inventory_id": 366,
-  "customer_id": 132,
+  "customer_id": 134,
   "return_date": "2005-06-10T22:04:30.000Z",
   "staff_id": 1
 }

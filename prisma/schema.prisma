@@ -279,6 +279,16 @@ model payment_p2007_06 {
   @@ignore
 }
 
+model reminder {
+  reminder_id          Int      @id @default(autoincrement())
+  rental_id            Int
+  notification_date    DateTime @db.Timestamptz
+  notification_sended  Boolean  @default(false)
+  rental               rental   @relation(fields: [rental_id], references: [rental_id])
+
+  @@index([rental_id], map: "idx_fk_rental_id")
+}
+
 model rental {
   rental_id        Int                @id @default(autoincrement())
   rental_date      DateTime           @db.Timestamp(6)
@@ -297,6 +307,7 @@ model rental {
   customer         customer           @relation(fields: [customer_id], references: [customer_id])
   inventory        inventory          @relation(fields: [inventory_id], references: [inventory_id])
   staff            staff              @relation(fields: [staff_id], references: [staff_id])
+  reminder         reminder[]
 
   @@unique([rental_date, inventory_id, customer_id], map: "idx_unq_rental_rental_date_inventory_id_customer_id")
   @@index([inventory_id], map: "idx_fk_inventory_id")
