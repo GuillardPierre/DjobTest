@@ -63,10 +63,10 @@ Cette valeur sera utilisé pour créer les réservations et enregistré dans la 
 
 - [x] Installer la base de données "Sakila" en version PostgreSQL disponible sur ce lien : https://github.com/jOOQ/sakila/tree/main/postgres-sakila-db (installer schéma + données).
 - [x] Initialiser un projet NestJS avec les entités Customer, Film et Rental (en utilisant TypeORM ou Prisma).
-- [ ] Deux tâches planifiées doivent être mises en place :
+- [x] Deux tâches planifiées doivent être mises en place :
   - Une tâche planifiée qui envoie un email à J-5 à 12h00 avant la date de retour de chaque location.
   - Une tâche planifiée qui envoie un email à J-3 à 12h00 avant la date de retour de chaque location.
-- [ ] Créer une API permettant de : - Ajouter/Modifier un client. - Effectuer une location. - Lister toutes les tâches planifiées. - Lancer une tâche planifiée manuellement. - Vérifier l'état d'exécution d'une tâche planifiée.
+- [x] Créer une API permettant de : - Ajouter/Modifier un client. - Effectuer une location. - Lister toutes les tâches planifiées. - Lancer une tâche planifiée manuellement. - Vérifier l'état d'exécution d'une tâche planifiée.
 
 ## Description
 

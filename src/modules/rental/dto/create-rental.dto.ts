@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsDate, IsString } from 'class-validator';
+import { IsInt, IsDate, IsString } from 'class-validator';
 
 export class CreateRentalDto {
   @IsDate()
@@ -10,7 +10,6 @@ export class CreateRentalDto {
   @IsInt()
   customer_id: number;
 
-  @IsOptional()
   @IsDate()
   return_date: string;
 

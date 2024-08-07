@@ -5,6 +5,7 @@ import { PrismaService } from 'src/modules/prisma/prisma.module';
 import { BadRequestException } from '@nestjs/common';
 import { DateTime } from 'luxon';
 import { SchedulerRegistry } from '@nestjs/schedule';
+import { rental } from '@prisma/client';
 
 @Injectable()
 export class RentalService {
@@ -79,30 +80,69 @@ export class RentalService {
       },
     });
 
+    console.log(rental.rental_date);
+
     // Programmer les notifications en appelant la fonction associée
-    this.scheduleNotifications(returnDateTime, customer.customer_id);
+    this.scheduleNotifications(rental, customer.customer_id);
 
     return rental;
   }
 
-  scheduleNotifications(returnDateTime: DateTime, customerId: number) {
-    const threeDaysBefore = returnDateTime
+  async scheduleNotifications(rental: rental, customerId: number) {
+    const threeDaysBefore = DateTime.fromJSDate(rental.return_date)
       .minus({ days: 3 })
       .set({ hour: 12, minute: 0, second: 0 });
-    const fiveDaysBefore = returnDateTime
+    const fiveDaysBefore = DateTime.fromJSDate(rental.return_date)
       .minus({ days: 5 })
       .set({ hour: 12, minute: 0, second: 0 });
     console.log('Date 3 jours avant', threeDaysBefore);
     console.log('Date 5 jours avant', fiveDaysBefore);
 
-    const threeDaysTimeout = setTimeout(() => {
-      this.logger.log(`Sending 3 days reminder for customer ${customerId}`);
-      // TODO Ajouter code dans bd
+    const reminderFiveDays = await this.prisma.reminder.create({
+      data: {
+        rental_id: rental.rental_id,
+        notification_date: fiveDaysBefore.toISO(),
+        notification_sended: false,
+      },
+    });
+    console.log('reminder 5 jours', reminderFiveDays);
+
+    const reminderThreeDay = await this.prisma.reminder.create({
+      data: {
+        rental_id: rental.rental_id,
+        notification_date: threeDaysBefore.toISO(),
+        notification_sended: false,
+      },
+    });
+
+    // ! Le reminder est bien à 12h pour l'utilisateur malgré l'info contenue dans le console.log.
+    console.log('reminder 3 jours', reminderThreeDay);
+
+    const threeDaysTimeout = setTimeout(async () => {
+      this.logger.log(
+        `Envoie du mail de rappel 3 jours à l'utilisateur : ${customerId}`,
+      );
+      const updatedReminder = await this.prisma.reminder.update({
+        where: { reminder_id: reminderThreeDay.reminder_id },
+        data: {
+          notification_sended: true,
+        },
+      });
+      console.log('updateReminder', updatedReminder);
+      reminderThreeDay;
     }, threeDaysBefore.toMillis() - DateTime.now().toMillis());
 
-    const fiveDaysTimeout = setTimeout(() => {
-      this.logger.log(`Sending 5 days reminder for customer ${customerId}`);
-      // TODO Ajouter code dans bd
+    const fiveDaysTimeout = setTimeout(async () => {
+      this.logger.log(
+        `Envoie du mail de rappel 5 jours  à l'utilisateur : ${customerId}`,
+      );
+      const updatedReminder = await this.prisma.reminder.update({
+        where: { reminder_id: reminderFiveDays.reminder_id },
+        data: {
+          notification_sended: true,
+        },
+      });
+      console.log('updateReminder', updatedReminder);
     }, fiveDaysBefore.toMillis() - DateTime.now().toMillis());
 
     this.schedulerRegistry.addTimeout(

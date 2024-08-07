@@ -111,10 +111,10 @@ Content-Type: application/json
 {
   "title": "ACADEMY DINOSAUR",
   "rental_id": 1,
-  "rental_date": "2005-05-24T22:53:30.000Z",
+  "rental_date": "2024-08-08T22:53:30.000Z",
   "inventory_id": 366,
-  "customer_id": 134,
-  "return_date": "2005-06-10T22:04:30.000Z",
+  "customer_id": 129,
+  "return_date": "2024-08-23T22:04:30.000Z",
   "staff_id": 1
 }
 
@@ -127,7 +127,7 @@ Content-Type: application/json
   "rental_id": 1,
   "rental_date": "2005-05-24T22:53:30.000Z",
   "inventory_id": 367,
-  "customer_id": 130,
+  "customer_id": 140,
   "return_date": "2005-05-26T22:04:30.000Z",
   "staff_id": 1,
   "last_update": "2006-02-15T21:30:53.000Z"
@@ -135,4 +135,12 @@ Content-Type: application/json
 
 ###
 ########################## DELETE RENTAL
-DELETE {{endpoint}}/rental/16054
+DELETE {{endpoint}}/rental/16058
+
+###
+########################## GET ALL REMINDER
+GET {{endpoint}}/reminder
+
+###
+########################## LAUNCH ONE REMINDER
+GET {{endpoint}}/reminder/5
