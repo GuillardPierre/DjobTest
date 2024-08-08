@@ -19,6 +19,7 @@ export class CustomerService {
         activebool: data.activebool,
         active: data.active,
         create_date: new Date(), // Valeur par défaut, si nécessaire
+        timezone: data.timezone,
       },
     });
   }

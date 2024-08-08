@@ -17,15 +17,16 @@ Content-Type: application/json
   "first_name": "Batman",
   "last_name": "PasWayne",
   "email": "batmail@mail.fr",
-  "address_id": 1,
+  "address_id": 3,
   "activebool": true,
-  "active": 1
+  "active": 1,
+  "timezone": "Europe/Parise"
 }
 
 ###
 ########################## UPDATE CUSTOMER
 # MODIFIER L'ID USER EN FONCTION DE LA CREATION PRECEDENTE
-PATCH {{endpoint}}/customer/600
+PATCH {{endpoint}}/customer/627
 Content-Type: application/json
 
 {
@@ -34,7 +35,7 @@ Content-Type: application/json
 
 ###
 ########################## DELETE CUSTOMER
-DELETE {{endpoint}}/customer/600
+DELETE {{endpoint}}/customer/626
 
 
 ########################## GET ALL FILM
@@ -44,56 +45,6 @@ GET {{endpoint}}/film
 ########################## GET ONE FILM
 GET {{endpoint}}/film/1
 
-###
-########################## CREATE FILM
-POST {{endpoint}}/film
-Content-Type: application/json
-
-{
-  "film_id": 1,
-  "title": "ACADEMY TEST",
-  "description": "An hepic story about a man who want to become a good developper",
-  "release_year": 2024,
-  "language_id": 1,
-  "original_language_id": null,
-  "rental_duration": 6,
-  "rental_rate": "0.99",
-  "length": 86,
-  "replacement_cost": "20.99",
-  "rating": "PG",
-  "last_update": "2006-02-15T05:03:42.000Z",
-  "special_features": [
-    "Deleted Scenes",
-    "Behind the Scenes"
-  ]
-}
-
-###
-########################## UPDATE FILM
-PATCH {{endpoint}}/film/1
-Content-Type: application/json
-
-{
-  "film_id": 1,
-  "title": "ACADEMY TEST",
-  "description": "An hepic story about a man who want to become a good developper",
-  "language_id": 1,
-  "original_language_id": null,
-  "rental_duration": 6,
-  "rental_rate": "0.99",
-  "length": 86,
-  "replacement_cost": "20.99",
-  "rating": "PG",
-  "last_update": "2006-02-15T05:03:42.000Z",
-  "special_features": [
-    "Deleted Scenes",
-    "Behind the Scenes"
-  ]
-}
-
-###
-########################## DELETE FILM
-DELETE {{endpoint}}/film/602
 
 ########################## GET ALL RENTAL (ne pas lancer ça fait buguer) 
 GET {{endpoint}}/rental
@@ -101,7 +52,7 @@ GET {{endpoint}}/rental
 ###
 ########################## GET ONE RENTAL
 GET {{endpoint}}/rental/2
-
+ 
 ###
 ########################## CREATE RENTAL
 # CHANGER UTILISATEUR SI ERREUR UNIQUE CONSTRAINT
@@ -109,38 +60,29 @@ POST {{endpoint}}/rental
 Content-Type: application/json
 
 {
-  "title": "ACADEMY DINOSAUR",
-  "rental_id": 1,
-  "rental_date": "2024-08-08T22:53:30.000Z",
-  "inventory_id": 366,
-  "customer_id": 129,
-  "return_date": "2024-08-23T22:04:30.000Z",
+  "title": "AGENT TRUMAN",
+  "rental_date": "2024-08-07T00:00:00.000Z",
+  "customer_id": 198,
+  "return_date": "2024-08-23T00:00:00.000Z",
   "staff_id": 1
 }
 
 ###
 ########################## UPDATE RENTAL
-PATCH {{endpoint}}/rental/1
+# CHANGER UTILISATEUR SI ERREUR UNIQUE CONSTRAINT
+PATCH  {{endpoint}}/rental/16073
 Content-Type: application/json
 
 {
-  "rental_id": 1,
-  "rental_date": "2005-05-24T22:53:30.000Z",
-  "inventory_id": 367,
-  "customer_id": 140,
-  "return_date": "2005-05-26T22:04:30.000Z",
-  "staff_id": 1,
-  "last_update": "2006-02-15T21:30:53.000Z"
+  "rental_date": "2024-08-11T00:00:00.000Z",
+  "customer_id": 196,
+  "return_date": "2024-08-24T00:00:00.000Z",
+  "staff_id": 1
 }
-
-###
-########################## DELETE RENTAL
-DELETE {{endpoint}}/rental/16058
-
 ###
 ########################## GET ALL REMINDER
 GET {{endpoint}}/reminder
 
 ###
 ########################## LAUNCH ONE REMINDER
-GET {{endpoint}}/reminder/5
+GET {{endpoint}}/reminder/27

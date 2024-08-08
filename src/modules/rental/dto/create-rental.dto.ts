@@ -17,5 +17,5 @@ export class CreateRentalDto {
   staff_id: number;
 
   @IsString()
-  title: string; // Ajoutez cette ligne
+  title: string;
 }
